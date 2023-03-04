@@ -28,13 +28,63 @@ public class Address {
     }
     public Address(String address){
         ArrayList<String> deliver = new ArrayList<String>();
+        int aptIndent = 0;
         String[] delivery = address.split("\\,");
         deliver.addAll(Arrays.asList(delivery));
+        if (delivery.length > 5) {
+            aptIndent = 1;
+            this.aptNumber = delivery[2].replace(",", "");
+        }
         this.streetNumber=deliver.get(0);
         this.streetName=deliver.get(1);
-        this.aptNumber=deliver.get(2);
-        this.city=deliver.get(3);
-        this.state=deliver.get(4);
-        this.zip=parseInt(deliver.get(5));
+        this.city=deliver.get(3+aptIndent);
+        this.state=deliver.get(4+aptIndent);
+        this.zip=parseInt(deliver.get(5+aptIndent));
+    }
+    public void zipcode(int zipcode) {
+        this.zip = zipcode;
+    }
+    public int zipcode() {
+        return this.zip;
+    }
+
+    public void state(String state) {
+        this.state = state;
+    }
+    public String state() {
+        return this.state;
+    }
+
+    public void city(String city) {
+        this.city = city;
+    }
+    public String city() {
+        return this.city;
+    }
+
+    public void apartmentNumber(String apartmentNumber) {
+        this.aptNumber = apartmentNumber;
+    }
+    public String apartmentNumber() {
+        return this.aptNumber;
+    }
+
+    public void streetName(String streetName) {
+        this.streetName = streetName;
+    }
+    public String streetName() {
+        return this.streetName;
+    }
+
+    public void streetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+    public String streetNumber() {
+        return this.streetNumber;
+    }
+
+    public String toString() {
+        return this.streetNumber + " " + this.streetName + " " + this.aptNumber + ", " + this.city
+                + ", " + this.state + " " + this.zip;
     }
 }
